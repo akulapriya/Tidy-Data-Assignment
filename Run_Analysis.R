@@ -9,13 +9,13 @@ unzip(fileurl)
 }
 
 # Read in the data into the test and training sets
-Features_test <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/test/X_test.txt")
-Activities_test <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/test/y_test.txt")
-Subjects_test <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/test/subject_test.txt")
+Features_test <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/test/X_test.txt",header=FALSE)
+Activities_test <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/test/y_test.txt",header=FALSE)
+Subjects_test <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/test/subject_test.txt",header=FALSE)
 
-Features_train <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/train/X_train.txt")
-Activities_train <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/train/y_train.txt")
-Subjects_train <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/train/subject_train.txt")
+Features_train <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/train/X_train.txt",header=FALSE)
+Activities_train <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/train/y_train.txt",header=FALSE)
+Subjects_train <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/train/subject_train.txt",header=FALSE)
 
 # Combine the rows for each of the data sets together
 Features_Set<- rbind(Features_test, Features_train)
@@ -28,7 +28,7 @@ Total_Date <- cbind(Subjects_Set, Activities_Set, Features_Set)
 # 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
 
 
-features_names <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/features.txt")
+features_names <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/features.txt",header=FALSE)
 
 # Filter the mean and std features
 MeanStdFeatures <- features_names[grep('-(mean|std)\\(\\)', features_names[, 2 ]), 2]
@@ -37,7 +37,7 @@ Total_Date <- Total_Date[, c(1, 2, MeanStdFeatures)]
 # 3. Uses descriptive activity names to name the activities in the data set
 
 # Read in the activity labels
-activities <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/activity_labels.txt")
+activities <- read.table("C:/Users/pakula/Downloads/course3project/UCI HAR Dataset/activity_labels.txt",header=FALSE)
 
 # Update the activity name
 Total_Date[, 2] <- activities[Total_Date[,2], ]
